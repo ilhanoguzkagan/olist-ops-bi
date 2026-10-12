@@ -1,0 +1,2 @@
+orders_placed,gmv_brl,unique_customers,orders_delivered,on_time_rate,avg_lead_time_days,median_lead_time_days,p90_lead_time_days,avg_promised_days,avg_review,avg_review_on_time,avg_review_late,freight_to_price_ratio
+99092,13449529.68,95774,96203,0.932112,12.538417,10.209722,23.063611,24.284794,4.1563,4.291157,2.270618,0.166668

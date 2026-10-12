@@ -1,0 +1,3 @@
+delivery_outcome,orders,approval_days,seller_handling_days,carrier_transit_days,total_lead_time_days,promised_days
+On time,88314,0.393503,2.622462,8.009973,11.025938,24.367994
+Late,6506,0.500944,5.551735,27.885393,33.938071,23.277436
