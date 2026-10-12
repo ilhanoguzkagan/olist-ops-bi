@@ -64,15 +64,16 @@ def charts(k):
 
     st = k["customer_state"].query("orders >= 300").sort_values("on_time_rate")
     fig5 = go.Figure(go.Bar(x=st.customer_state, y=st.on_time_rate, marker=dict(color=st.on_time_rate, colorscale=[[0, RED], [0.5, AMBER], [1, TEAL]]),
+                            text=[f"{v:.0%}" for v in st.on_time_rate], textposition="outside", textfont_size=10,
                             customdata=st.orders, hovertemplate="%{x}<br>On time %{y:.1%}<br>%{customdata:,} orders<extra></extra>"))
-    fig5.update_yaxes(tickformat=".0%", range=[0.7, 1])
+    fig5.update_yaxes(tickformat=".0%", range=[0, 1.08])
     style(fig5, "On-time rate by destination state (300+ orders)")
 
     ln = k["lane_performance"].nsmallest(10, "on_time_rate").sort_values("on_time_rate", ascending=False)
     fig6 = go.Figure(go.Bar(y=ln.lane, x=ln.on_time_rate, orientation="h", marker_color=RED,
-                            text=[f"{o:,} orders" for o in ln.orders], textposition="inside",
+                            text=[f"{r:.1%}  ·  {o:,} orders" for r, o in zip(ln.on_time_rate, ln.orders)], textposition="inside",
                             hovertemplate="%{y}<br>On time %{x:.1%}<extra></extra>"))
-    fig6.update_xaxes(tickformat=".0%", range=[0.7, 1])
+    fig6.update_xaxes(tickformat=".0%", range=[0, 1])
     style(fig6, "10 weakest shipping lanes (seller -> customer state, 300+ orders)")
 
     sc = k["seller_scorecard"]
